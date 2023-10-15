@@ -14,6 +14,7 @@ export default class ImageGallery extends Component {
 
   state = {
     images: [],
+    total: 0,
     status: 'idle',
   };
 
@@ -33,6 +34,7 @@ export default class ImageGallery extends Component {
       .then(response => {
         this.setState({
           images: response.hits,
+          total: response.totalHits,
           status: 'resolve',
         });
       })
@@ -73,7 +75,7 @@ export default class ImageGallery extends Component {
             ))}
           </ul>
           {this.state.images.length !== 0 ? (
-            <Button onClick={this.props.loadMoreBtn} />
+            <Button onClick={this.props.loadMoreBtn} disabled={this.state.images.length === this.state.total} />
           ) : (
             alert('No results')
           )}

@@ -25,3 +25,9 @@
 .button:focus {
     background-color: #b351a2;
 }
+
+.button:disabled,
+.button[disabled] {
+    opacity: 0.5;
+    cursor: inherit;
+}
